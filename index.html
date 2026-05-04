@@ -104,68 +104,10 @@
   <footer>Feito com carinho 💗</footer>
 
   <script>
-    const fotos = [
-      'IMG/img1.jpg',
-      'IMG/img2.jpg',
-      'IMG/img3.png',
-      'IMG/img4.jpg',
-      'IMG/img5.jpg',
-      'IMG/img6.jpg',
-      'IMG/img7.jpg',
-      'IMG/img8.jpg',
-      'IMG/img9.jpg',
-      'IMG/img10.jpg',
-      'IMG/img11.jpg',
-      'IMG/img12.jpg',
-      'IMG/img13.jpg',
-      'IMG/img14.jpg',
-      'IMG/img15.jpg',
-      'IMG/img16.jpg',
-      'IMG/img17.jpg',
-      'IMG/img18.jpg',
-      'IMG/img19.jpg',
-      'IMG/img20.jpg',
-      'IMG/img21.jpg',
-      'IMG/img22.jpg',
-      'IMG/img23.jpg',
-      'IMG/img24.jpg',
-      'IMG/img25.jpg',
-      'IMG/img26.jpg',
-      'IMG/img27.jpg',
-      'IMG/img28.jpg',
-      'IMG/img29.jpg',
-      'IMG/img30.jpg',
-      'IMG/img31.jpg',
-      'IMG/img32.jpg',
-      'IMG/img33.jpg',
-      'IMG/img34.jpg',
-      'IMG/img35.jpg',
-      'IMG/img36.jpg',
-      'IMG/img37.jpg',
-      'IMG/img38.jpg',
-      'IMG/img39.jpg',
-      'IMG/img40.jpg',
-      'IMG/img41.jpg',
-      'IMG/img42.jpg',
-      'IMG/img43.jpg',
-      'IMG/img44.jpg',
-      'IMG/img45.jpg',
-      'IMG/img46.jpg',
-      'IMG/img47.jpg',
-      'IMG/img48.jpg',
-      'IMG/img49.jpg',
-      'IMG/img50.jpg',
-      'IMG/img51.jpg',
-      'IMG/img52.jpg',
-      'IMG/img53.jpg',
-      'IMG/img54.jpg',
-      'IMG/img55.jpg',
-      'IMG/img56.jpg',
-      'IMG/img57.jpg',
-      'IMG/img58.jpg',
-      'IMG/img59.jpg',
-      'IMG/img60.jpg'
-    ];
+    const fotos = Array.from({ length: 60 }, (_, i) => {
+      const numero = i + 1;
+      return numero === 2 ? 'IMG/img2.png' : `IMG/img${numero}.jpg`;
+    });
 
     const galeria = document.getElementById('galeria');
 
