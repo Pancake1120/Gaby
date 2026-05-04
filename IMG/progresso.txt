@@ -1,7 +1,0 @@
-Progresso do upload das imagens
-
-Enviadas: 1 de 60
-Porcentagem: 2%
-Barra: █░░░░░░░░░░░░░░░░░░░
-
-Última imagem confirmada: IMG/img1.jpg
