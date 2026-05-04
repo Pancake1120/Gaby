@@ -6,60 +6,67 @@
   <title>Gaby</title>
   <style>
     * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     body {
-      margin: 0;
       min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #ffb3d1 0, #2b1020 45%, #08070a 100%);
+      background: radial-gradient(circle at top, #ffb3d1 0, #2b1020 45%, #050505 100%);
       color: white;
       overflow-x: hidden;
     }
     .hero {
-      min-height: 42vh;
+      min-height: 34vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 44px 18px 26px;
-      position: relative;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 28px;
-      pointer-events: none;
+      padding: 38px 18px 22px;
     }
     .hero-content {
       max-width: 760px;
       padding: 24px;
       border-radius: 26px;
-      background: rgba(255, 255, 255, .08);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.08);
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
     h1 {
       margin: 0;
-      font-size: clamp(38px, 10vw, 82px);
-      letter-spacing: 1px;
+      font-size: clamp(40px, 11vw, 82px);
       text-shadow: 0 8px 28px rgba(0,0,0,.45);
     }
     .subtitle {
       margin: 14px auto 0;
-      max-width: 560px;
+      max-width: 580px;
       font-size: clamp(16px, 4vw, 21px);
       color: #ffe6f1;
       line-height: 1.5;
     }
-    .counter {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 10px 16px;
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      padding: 12px;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    button {
+      border: 0;
       border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      color: #fff;
-      font-weight: bold;
+      padding: 10px 14px;
+      background: #ff7eb6;
+      color: #18000b;
+      font-weight: 700;
+    }
+    .note {
+      width: 100%;
+      text-align: center;
+      color: #ffd7e8;
+      font-size: 12px;
     }
     .galeria {
       columns: 4 180px;
@@ -75,18 +82,60 @@
       overflow: hidden;
       background: rgba(255,255,255,.08);
       box-shadow: 0 12px 34px rgba(0,0,0,.32);
-      transform: translateZ(0);
     }
     .photo-card img {
       display: block;
       width: 100%;
       height: auto;
     }
+    .sphere-wrap { display: none; }
+    body.sphere-mode .galeria { display: none; }
+    body.sphere-mode .hero { min-height: 23vh; }
+    body.sphere-mode .sphere-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 62vh;
+      perspective: 900px;
+      overflow: hidden;
+    }
+    .sphere {
+      width: min(78vw, 430px);
+      height: min(78vw, 430px);
+      position: relative;
+      transform-style: preserve-3d;
+      animation: girar 26s linear infinite;
+    }
+    .sphere .tile {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 74px;
+      height: 92px;
+      margin-left: -37px;
+      margin-top: -46px;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 0 18px rgba(255,126,182,.34);
+      backface-visibility: visible;
+    }
+    .sphere .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @keyframes girar {
+      from { transform: rotateY(0deg) rotateX(-10deg); }
+      to { transform: rotateY(360deg) rotateX(-10deg); }
+    }
     footer {
       text-align: center;
-      padding: 22px 14px 34px;
+      padding: 22px 14px 36px;
       color: #ffd7e8;
-      font-size: 14px;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -94,14 +143,22 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Gaby</h1>
-      <p class="subtitle">Existem fotos melhores, mas essas sao sobre momentos e não beleza, pois voce é perfeita em todos os momentos, minha pituchinha.</p>
-      <span class="counter">60 fotos</span>
+      <p class="subtitle">Existem fotos melhores, mas essas são sobre momentos, e não sobre beleza, pois você é perfeita em todos os momentos, minha pituchinha.</p>
     </div>
   </section>
 
-  <main class="galeria" id="galeria"></main>
+  <div class="controls">
+    <button id="galeriaBtn">Galeria</button>
+    <button id="esferaBtn">Esfera 3D</button>
+    <button id="musicaBtn">Tocar música</button>
+    <div class="note">Música: coloque um arquivo chamado <b>musica.mp3</b> no repositório para tocar aqui.</div>
+  </div>
 
-  <footer>Diria que você é o sal da minha farofa, mas não sksk, você é perfeita de mais para ser tão pouco, você é meu ovo de gema dupla 🫪</footer>
+  <audio id="musica" src="musica.mp3" loop></audio>
+  <main class="galeria" id="galeria"></main>
+  <section class="sphere-wrap"><div class="sphere" id="sphere"></div></section>
+
+  <footer>Diria que você é o sal da minha farofa, mas não sksk. Você é perfeita demais para ser tão pouco; você é meu ovo de gema dupla 🫪</footer>
 
   <script>
     const fotos = Array.from({ length: 60 }, (_, i) => {
@@ -110,19 +167,57 @@
     });
 
     const galeria = document.getElementById('galeria');
+    const sphere = document.getElementById('sphere');
+    const musica = document.getElementById('musica');
+    const musicaBtn = document.getElementById('musicaBtn');
 
     fotos.forEach((foto, index) => {
       const card = document.createElement('div');
       card.className = 'photo-card';
-
       const img = document.createElement('img');
       img.src = foto;
       img.alt = `Foto ${index + 1}`;
       img.loading = 'lazy';
-
       card.appendChild(img);
       galeria.appendChild(card);
     });
+
+    fotos.forEach((foto, index) => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      const img = document.createElement('img');
+      img.src = foto;
+      img.alt = `Foto ${index + 1}`;
+      tile.appendChild(img);
+
+      const total = fotos.length;
+      const phi = Math.acos(-1 + (2 * index) / total);
+      const theta = Math.sqrt(total * Math.PI) * phi;
+      const raio = Math.min(window.innerWidth * 0.34, 190);
+      const x = raio * Math.cos(theta) * Math.sin(phi);
+      const y = raio * Math.sin(theta) * Math.sin(phi);
+      const z = raio * Math.cos(phi);
+
+      tile.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${theta}rad)`;
+      sphere.appendChild(tile);
+    });
+
+    document.getElementById('galeriaBtn').onclick = () => document.body.classList.remove('sphere-mode');
+    document.getElementById('esferaBtn').onclick = () => document.body.classList.add('sphere-mode');
+
+    musicaBtn.onclick = async () => {
+      try {
+        if (musica.paused) {
+          await musica.play();
+          musicaBtn.textContent = 'Pausar música';
+        } else {
+          musica.pause();
+          musicaBtn.textContent = 'Tocar música';
+        }
+      } catch (e) {
+        alert('Envie um arquivo chamado musica.mp3 para o repositório.');
+      }
+    };
   </script>
 </body>
 </html>
