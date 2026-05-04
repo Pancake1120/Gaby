@@ -5,72 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gaby</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #111, #2b1020);
+      background: radial-gradient(circle at top, #ffb3d1 0, #2b1020 45%, #08070a 100%);
       color: white;
+      overflow-x: hidden;
+    }
+    .hero {
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 44px 18px 26px;
+      position: relative;
     }
-
-    header {
-      padding: 28px 16px 12px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      pointer-events: none;
     }
-
+    .hero-content {
+      max-width: 760px;
+      padding: 24px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
     h1 {
       margin: 0;
-      font-size: 32px;
+      font-size: clamp(38px, 10vw, 82px);
+      letter-spacing: 1px;
+      text-shadow: 0 8px 28px rgba(0,0,0,.45);
     }
-
-    p {
-      margin: 10px auto 0;
-      max-width: 600px;
-      color: #f5d7e6;
-      font-size: 16px;
+    .subtitle {
+      margin: 14px auto 0;
+      max-width: 560px;
+      font-size: clamp(16px, 4vw, 21px);
+      color: #ffe6f1;
+      line-height: 1.5;
     }
-
+    .counter {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      font-weight: bold;
+    }
     .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
+      columns: 4 180px;
+      column-gap: 16px;
       padding: 18px;
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1180px;
+      margin: 0 auto 34px;
     }
-
-    .galeria img {
+    .photo-card {
+      break-inside: avoid;
+      margin: 0 0 16px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 12px 34px rgba(0,0,0,.32);
+      transform: translateZ(0);
+    }
+    .photo-card img {
+      display: block;
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 14px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-      background: #222;
+      height: auto;
+    }
+    footer {
+      text-align: center;
+      padding: 22px 14px 34px;
+      color: #ffd7e8;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Fotos da Gaby</h1>
-    <p>Uma galeria especial com as fotos guardadas neste site.</p>
-  </header>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Gaby</h1>
+      <p class="subtitle">Uma galeria feita com carinho, reunindo momentos especiais em um cantinho só.</p>
+      <span class="counter">60 fotos</span>
+    </div>
+  </section>
 
   <main class="galeria" id="galeria"></main>
 
+  <footer>Feito com carinho 💗</footer>
+
   <script>
+    const fotos = [
+      'IMG/img1.jpg',
+      'IMG/img2.jpg',
+      'IMG/img3.png',
+      'IMG/img4.jpg',
+      'IMG/img5.jpg',
+      'IMG/img6.jpg',
+      'IMG/img7.jpg',
+      'IMG/img8.jpg',
+      'IMG/img9.jpg',
+      'IMG/img10.jpg',
+      'IMG/img11.jpg',
+      'IMG/img12.jpg',
+      'IMG/img13.jpg',
+      'IMG/img14.jpg',
+      'IMG/img15.jpg',
+      'IMG/img16.jpg',
+      'IMG/img17.jpg',
+      'IMG/img18.jpg',
+      'IMG/img19.jpg',
+      'IMG/img20.jpg',
+      'IMG/img21.jpg',
+      'IMG/img22.jpg',
+      'IMG/img23.jpg',
+      'IMG/img24.jpg',
+      'IMG/img25.jpg',
+      'IMG/img26.jpg',
+      'IMG/img27.jpg',
+      'IMG/img28.jpg',
+      'IMG/img29.jpg',
+      'IMG/img30.jpg',
+      'IMG/img31.jpg',
+      'IMG/img32.jpg',
+      'IMG/img33.jpg',
+      'IMG/img34.jpg',
+      'IMG/img35.jpg',
+      'IMG/img36.jpg',
+      'IMG/img37.jpg',
+      'IMG/img38.jpg',
+      'IMG/img39.jpg',
+      'IMG/img40.jpg',
+      'IMG/img41.jpg',
+      'IMG/img42.jpg',
+      'IMG/img43.jpg',
+      'IMG/img44.jpg',
+      'IMG/img45.jpg',
+      'IMG/img46.jpg',
+      'IMG/img47.jpg',
+      'IMG/img48.jpg',
+      'IMG/img49.jpg',
+      'IMG/img50.jpg',
+      'IMG/img51.jpg',
+      'IMG/img52.jpg',
+      'IMG/img53.jpg',
+      'IMG/img54.jpg',
+      'IMG/img55.jpg',
+      'IMG/img56.jpg',
+      'IMG/img57.jpg',
+      'IMG/img58.jpg',
+      'IMG/img59.jpg',
+      'IMG/img60.jpg'
+    ];
+
     const galeria = document.getElementById('galeria');
 
-    for (let i = 1; i <= 62; i++) {
+    fotos.forEach((foto, index) => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+
       const img = document.createElement('img');
-      img.src = `IMG/img${i}.png`;
-      img.alt = `Foto ${i}`;
+      img.src = foto;
+      img.alt = `Foto ${index + 1}`;
       img.loading = 'lazy';
-      galeria.appendChild(img);
-    }
+
+      card.appendChild(img);
+      galeria.appendChild(card);
+    });
   </script>
 </body>
 </html>
