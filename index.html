@@ -1,182 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaby</title>
-  <style>
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #ffb3d1 0, #2b1020 45%, #050505 100%);
-      color: white;
-      overflow-x: hidden;
-    }
-    .hero {
-      min-height: 32vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 34px 18px 20px;
-    }
-    .hero-content {
-      max-width: 760px;
-      padding: 24px;
-      border-radius: 26px;
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-    h1 { margin: 0; font-size: clamp(40px, 11vw, 82px); text-shadow: 0 8px 28px rgba(0,0,0,.45); }
-    .subtitle { margin: 14px auto 0; max-width: 580px; font-size: clamp(16px, 4vw, 21px); color: #ffe6f1; line-height: 1.5; }
-    .controls {
-      position: sticky; top: 0; z-index: 20;
-      display: flex; justify-content: center; gap: 9px; flex-wrap: wrap;
-      padding: 12px; background: rgba(0,0,0,.82); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    button { border: 0; border-radius: 999px; padding: 10px 14px; background: #ff7eb6; color: #18000b; font-weight: 700; }
-    .note { width: 100%; text-align: center; color: #ffd7e8; font-size: 12px; }
-    .galeria { columns: 4 180px; column-gap: 16px; padding: 18px; max-width: 1180px; margin: 0 auto 34px; }
-    .photo-card { break-inside: avoid; margin: 0 0 16px; border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.08); box-shadow: 0 12px 34px rgba(0,0,0,.32); }
-    .photo-card img { display: block; width: 100%; height: auto; }
-
-    .sphere-wrap { display: none; }
-    body.sphere-mode .galeria { display: none; }
-    body.sphere-mode .hero { min-height: 18vh; }
-    body.sphere-mode .sphere-wrap {
-      display: flex; justify-content: center; align-items: center;
-      min-height: 74vh; perspective: 1200px; overflow: hidden; touch-action: none;
-    }
-    .sphere {
-      width: min(104vw, 680px);
-      height: min(104vw, 680px);
-      position: relative; transform-style: preserve-3d;
-      animation: girar 30s linear infinite;
-    }
-    .sphere.controlando { animation: none; }
-    .sphere .tile {
-      position: absolute; left: 50%; top: 50%;
-      width: clamp(64px, 16vw, 102px); height: clamp(84px, 21vw, 132px);
-      margin-left: calc(clamp(64px, 16vw, 102px) / -2);
-      margin-top: calc(clamp(84px, 21vw, 132px) / -2);
-      border: 1px solid rgba(255,255,255,.72); border-radius: 12px; overflow: hidden;
-      background: rgba(255,255,255,.10);
-      box-shadow: 0 0 26px rgba(255,126,182,.54), inset 0 0 12px rgba(255,255,255,.16);
-      backface-visibility: visible;
-    }
-    .sphere .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 100; background: rgba(0,0,0,.92); padding: 16px; }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 96vw; max-height: 88vh; border-radius: 16px; box-shadow: 0 0 45px rgba(255,126,182,.35); }
-    .lightbox button { position: absolute; top: 18px; right: 18px; background: white; }
-    @keyframes girar { from { transform: rotateX(-10deg) rotateY(0deg); } to { transform: rotateX(-10deg) rotateY(360deg); } }
-    footer { text-align: center; padding: 22px 14px 36px; color: #ffd7e8; line-height: 1.5; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaby</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{min-height:100vh;font-family:Arial,sans-serif;background:#030303;color:white;overflow-x:hidden}.hero{padding:28px 16px 16px;text-align:center;background:radial-gradient(circle at top,#ff9fc9 0,#2b1020 48%,#030303 100%)}h1{margin:0;font-size:clamp(42px,12vw,84px);text-shadow:0 8px 25px #000}.subtitle{max-width:650px;margin:12px auto 0;color:#ffe6f1;line-height:1.5;font-size:16px}.controls{position:sticky;top:0;z-index:10;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(0,0,0,.86);border-bottom:1px solid rgba(255,255,255,.12)}button{border:0;border-radius:999px;padding:10px 14px;background:#ff7eb6;color:#17000a;font-weight:800}.note{width:100%;text-align:center;color:#ffd7e8;font-size:12px}.galeria{columns:4 160px;column-gap:14px;padding:14px;max-width:1150px;margin:auto}.photo-card{break-inside:avoid;margin:0 0 14px;border-radius:18px;overflow:hidden;background:#111;box-shadow:0 10px 28px rgba(0,0,0,.35)}.photo-card img{width:100%;display:block}.sphere-screen{display:none}body.sphere-mode .hero,body.sphere-mode .galeria,body.sphere-mode footer{display:none}body.sphere-mode .controls{position:fixed;left:0;right:0;top:0}body.sphere-mode .sphere-screen{display:flex;align-items:center;justify-content:center;height:100vh;width:100vw;background:radial-gradient(circle,#24101a 0,#050505 62%,#000 100%);overflow:hidden;perspective:1400px;touch-action:none}.sphere{position:relative;width:100vw;height:100vw;max-width:760px;max-height:760px;transform-style:preserve-3d}.tile{position:absolute;left:50%;top:50%;width:92px;height:118px;margin-left:-46px;margin-top:-59px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.75);box-shadow:0 0 22px rgba(255,126,182,.7),inset 0 0 12px rgba(255,255,255,.2);background:#111;transform-style:preserve-3d}.tile img{width:100%;height:100%;object-fit:cover;display:block}.lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.94);z-index:99;padding:14px}.lightbox.open{display:flex}.lightbox img{max-width:96vw;max-height:88vh;border-radius:14px}.lightbox button{position:absolute;right:16px;top:16px;background:white}footer{text-align:center;color:#ffd7e8;padding:22px 14px 36px;line-height:1.5}@media(max-width:480px){.tile{width:78px;height:102px;margin-left:-39px;margin-top:-51px}.sphere{width:128vw;height:128vw}}
+</style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Gaby</h1>
-      <p class="subtitle">Existem fotos melhores, mas essas são sobre momentos, e não sobre beleza, pois você é perfeita em todos os momentos, minha pituchinha.</p>
-    </div>
-  </section>
-  <div class="controls">
-    <button id="galeriaBtn">Galeria</button>
-    <button id="esferaBtn">Esfera 3D</button>
-    <button id="musicaBtn">Tocar música</button>
-    <div class="note">Arraste a esfera com o dedo. Toque numa foto para ampliar. Música: envie <b>musica.mp3</b>.</div>
-  </div>
-  <audio id="musica" src="musica.mp3" loop></audio>
-  <main class="galeria" id="galeria"></main>
-  <section class="sphere-wrap"><div class="sphere" id="sphere"></div></section>
-  <div class="lightbox" id="lightbox"><button id="fecharZoom">Fechar</button><img id="zoomImg" src="" alt="Foto ampliada"></div>
-  <footer>Diria que você é o sal da minha farofa, mas não sksk. Você é perfeita demais para ser tão pouco; você é meu ovo de gema dupla 🫪</footer>
-
-  <script>
-    const fotos = Array.from({ length: 60 }, (_, i) => {
-      const n = i + 1;
-      return n === 2 ? 'IMG/img2.png' : `IMG/img${n}.jpg`;
-    });
-
-    const galeria = document.getElementById('galeria');
-    const sphere = document.getElementById('sphere');
-    const musica = document.getElementById('musica');
-    const musicaBtn = document.getElementById('musicaBtn');
-    const lightbox = document.getElementById('lightbox');
-    const zoomImg = document.getElementById('zoomImg');
-
-    function abrirZoom(src) { zoomImg.src = src; lightbox.classList.add('open'); }
-    document.getElementById('fecharZoom').onclick = () => lightbox.classList.remove('open');
-    lightbox.onclick = e => { if (e.target === lightbox) lightbox.classList.remove('open'); };
-
-    function criarImagem(src, alt) {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = alt;
-      img.loading = 'lazy';
-      img.onerror = () => img.parentElement && img.parentElement.remove();
-      img.onclick = () => abrirZoom(src);
-      return img;
-    }
-
-    fotos.forEach((foto, index) => {
-      const card = document.createElement('div');
-      card.className = 'photo-card';
-      card.appendChild(criarImagem(foto, `Foto ${index + 1}`));
-      galeria.appendChild(card);
-    });
-
-    let rotX = -10, rotY = 0;
-    function aplicarControle() { sphere.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`; }
-
-    function montarEsfera() {
-      sphere.innerHTML = '';
-      const total = fotos.length;
-      const raio = Math.min(window.innerWidth * 0.48, 320);
-      fotos.forEach((foto, index) => {
-        const tile = document.createElement('div');
-        tile.className = 'tile';
-        tile.appendChild(criarImagem(foto, `Foto ${index + 1}`));
-        const phi = Math.acos(-1 + (2 * (index + .5)) / total);
-        const theta = Math.sqrt(total * Math.PI) * phi;
-        const x = raio * Math.cos(theta) * Math.sin(phi);
-        const y = raio * Math.sin(theta) * Math.sin(phi);
-        const z = raio * Math.cos(phi);
-        tile.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${theta}rad)`;
-        sphere.appendChild(tile);
-      });
-    }
-    montarEsfera();
-    window.addEventListener('resize', montarEsfera);
-
-    document.getElementById('galeriaBtn').onclick = () => document.body.classList.remove('sphere-mode');
-    document.getElementById('esferaBtn').onclick = () => document.body.classList.add('sphere-mode');
-
-    let dragging = false, sx = 0, sy = 0, moved = false;
-    sphere.addEventListener('pointerdown', e => {
-      dragging = true; moved = false; sx = e.clientX; sy = e.clientY;
-      sphere.classList.add('controlando');
-      sphere.setPointerCapture(e.pointerId);
-    });
-    sphere.addEventListener('pointermove', e => {
-      if (!dragging) return;
-      const dx = e.clientX - sx, dy = e.clientY - sy;
-      if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
-      sx = e.clientX; sy = e.clientY;
-      rotY += dx * .55; rotX -= dy * .35;
-      aplicarControle();
-    });
-    sphere.addEventListener('pointerup', () => { dragging = false; });
-
-    musicaBtn.onclick = async () => {
-      try {
-        if (musica.paused) { await musica.play(); musicaBtn.textContent = 'Pausar música'; }
-        else { musica.pause(); musicaBtn.textContent = 'Tocar música'; }
-      } catch(e) { alert('Envie um arquivo chamado musica.mp3 para o repositório.'); }
-    };
-  </script>
+<section class="hero"><h1>Gaby</h1><p class="subtitle">Existem fotos melhores, mas essas são sobre momentos, e não sobre beleza, pois você é perfeita em todos os momentos, minha pituchinha.</p></section>
+<div class="controls"><button id="galeriaBtn">Galeria</button><button id="esferaBtn">Esfera 3D</button><button id="musicaBtn">Tocar música</button><div class="note">Na esfera: arraste com o dedo para girar. Toque em uma foto para ampliar.</div></div>
+<audio id="musica" src="musica.mp3" loop></audio>
+<main class="galeria" id="galeria"></main>
+<section class="sphere-screen" id="sphereScreen"><div class="sphere" id="sphere"></div></section>
+<div class="lightbox" id="lightbox"><button id="fecharZoom">Fechar</button><img id="zoomImg"></div>
+<footer>Diria que você é o sal da minha farofa, mas não sksk. Você é perfeita demais para ser tão pouco; você é meu ovo de gema dupla 🫪</footer>
+<script>
+const total=60;
+const extensoes={2:'png'};
+const fotos=Array.from({length:total},(_,i)=>{const n=i+1;return `IMG/img${n}.${extensoes[n]||'jpg'}`});
+const galeria=document.getElementById('galeria'),sphere=document.getElementById('sphere'),screen=document.getElementById('sphereScreen'),lightbox=document.getElementById('lightbox'),zoomImg=document.getElementById('zoomImg'),musica=document.getElementById('musica'),musicaBtn=document.getElementById('musicaBtn');
+function zoom(src){zoomImg.src=src;lightbox.classList.add('open')}
+fecharZoom.onclick=()=>lightbox.classList.remove('open');lightbox.onclick=e=>{if(e.target===lightbox)lightbox.classList.remove('open')};
+function imgComFallback(n,alt){const img=document.createElement('img');let tentativas=['jpg','png','jpeg','webp'];if(n===2)tentativas=['png','jpg','jpeg','webp'];let t=0;function set(){img.src=`IMG/img${n}.${tentativas[t]}`}img.alt=alt;img.loading='lazy';img.onerror=()=>{t++;if(t<tentativas.length)set();else if(img.parentElement)img.parentElement.remove()};img.onclick=()=>zoom(img.src);set();return img}
+for(let n=1;n<=total;n++){const card=document.createElement('div');card.className='photo-card';card.appendChild(imgComFallback(n,`Foto ${n}`));galeria.appendChild(card)}
+let rotX=-10,rotY=0,auto=true,last=0;
+function aplicar(){sphere.style.transform=`rotateX(${rotX}deg) rotateY(${rotY}deg)`}
+function montar(){sphere.innerHTML='';const raio=Math.min(window.innerWidth*0.62,360);for(let i=0;i<total;i++){const n=i+1,tile=document.createElement('div');tile.className='tile';tile.appendChild(imgComFallback(n,`Foto ${n}`));const phi=Math.acos(-1+(2*(i+.5))/total),theta=Math.sqrt(total*Math.PI)*phi,x=raio*Math.cos(theta)*Math.sin(phi),y=raio*Math.sin(theta)*Math.sin(phi),z=raio*Math.cos(phi);tile.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${theta}rad) rotateX(${phi}rad)`;sphere.appendChild(tile)}}
+montar();addEventListener('resize',montar);
+function anim(ts){if(auto){rotY+=0.08;aplicar()}requestAnimationFrame(anim)}requestAnimationFrame(anim);
+galeriaBtn.onclick=()=>document.body.classList.remove('sphere-mode');esferaBtn.onclick=()=>{document.body.classList.add('sphere-mode');setTimeout(montar,50)};
+let drag=false,sx=0,sy=0;
+screen.addEventListener('pointerdown',e=>{drag=true;auto=false;sx=e.clientX;sy=e.clientY;screen.setPointerCapture(e.pointerId)});
+screen.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=e.clientX;sy=e.clientY;rotY+=dx*.55;rotX-=dy*.35;aplicar()});
+screen.addEventListener('pointerup',()=>{drag=false});screen.addEventListener('pointercancel',()=>{drag=false});
+musicaBtn.onclick=async()=>{try{if(musica.paused){await musica.play();musicaBtn.textContent='Pausar música'}else{musica.pause();musicaBtn.textContent='Tocar música'}}catch(e){alert('Envie um arquivo chamado musica.mp3 para o repositório.')}};
+</script>
 </body>
 </html>
