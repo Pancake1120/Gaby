@@ -35,7 +35,6 @@ let drag=false,sx=0,sy=0;
 screen.addEventListener('pointerdown',e=>{drag=true;auto=false;sx=e.clientX;sy=e.clientY;screen.setPointerCapture(e.pointerId)});
 screen.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=e.clientX;sy=e.clientY;rotY+=dx*.55;rotX-=dy*.35;aplicar()});
 screen.addEventListener('pointerup',()=>{drag=false});screen.addEventListener('pointercancel',()=>{drag=false});
-musicaBtn.onclick=async()=>{try{if(musica.paused){await musica.play();musicaBtn.textContent='Pausar música'}else{musica.pause();musicaBtn.textContent='Tocar música'}}catch(e){alert('Coloque a música em audio/musica.mp3')}};
 </script>
 </body>
 </html>
