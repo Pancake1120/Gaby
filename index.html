@@ -15,7 +15,7 @@
       overflow-x: hidden;
     }
     .hero {
-      min-height: 31vh;
+      min-height: 32vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -29,143 +29,51 @@
       background: rgba(255,255,255,.08);
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(40px, 11vw, 82px);
-      text-shadow: 0 8px 28px rgba(0,0,0,.45);
-    }
-    .subtitle {
-      margin: 14px auto 0;
-      max-width: 580px;
-      font-size: clamp(16px, 4vw, 21px);
-      color: #ffe6f1;
-      line-height: 1.5;
-    }
+    h1 { margin: 0; font-size: clamp(40px, 11vw, 82px); text-shadow: 0 8px 28px rgba(0,0,0,.45); }
+    .subtitle { margin: 14px auto 0; max-width: 580px; font-size: clamp(16px, 4vw, 21px); color: #ffe6f1; line-height: 1.5; }
     .controls {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      flex-wrap: wrap;
-      padding: 12px;
-      background: rgba(0,0,0,.80);
-      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 20;
+      display: flex; justify-content: center; gap: 9px; flex-wrap: wrap;
+      padding: 12px; background: rgba(0,0,0,.82); backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
-    button {
-      border: 0;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: #ff7eb6;
-      color: #18000b;
-      font-weight: 700;
-    }
-    .note {
-      width: 100%;
-      text-align: center;
-      color: #ffd7e8;
-      font-size: 12px;
-    }
-    .galeria {
-      columns: 4 180px;
-      column-gap: 16px;
-      padding: 18px;
-      max-width: 1180px;
-      margin: 0 auto 34px;
-    }
-    .photo-card {
-      break-inside: avoid;
-      margin: 0 0 16px;
-      border-radius: 22px;
-      overflow: hidden;
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 12px 34px rgba(0,0,0,.32);
-    }
-    .photo-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    button { border: 0; border-radius: 999px; padding: 10px 14px; background: #ff7eb6; color: #18000b; font-weight: 700; }
+    .note { width: 100%; text-align: center; color: #ffd7e8; font-size: 12px; }
+    .galeria { columns: 4 180px; column-gap: 16px; padding: 18px; max-width: 1180px; margin: 0 auto 34px; }
+    .photo-card { break-inside: avoid; margin: 0 0 16px; border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.08); box-shadow: 0 12px 34px rgba(0,0,0,.32); }
+    .photo-card img { display: block; width: 100%; height: auto; }
+
     .sphere-wrap { display: none; }
     body.sphere-mode .galeria { display: none; }
-    body.sphere-mode .hero { min-height: 19vh; }
+    body.sphere-mode .hero { min-height: 18vh; }
     body.sphere-mode .sphere-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 72vh;
-      perspective: 1200px;
-      overflow: hidden;
-      touch-action: none;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 74vh; perspective: 1200px; overflow: hidden; touch-action: none;
     }
     .sphere {
-      width: min(96vw, 620px);
-      height: min(96vw, 620px);
-      position: relative;
-      transform-style: preserve-3d;
-      animation: girar 28s linear infinite;
+      width: min(104vw, 680px);
+      height: min(104vw, 680px);
+      position: relative; transform-style: preserve-3d;
+      animation: girar 30s linear infinite;
     }
-    .sphere.paused { animation-play-state: paused; }
+    .sphere.controlando { animation: none; }
     .sphere .tile {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: clamp(62px, 15vw, 94px);
-      height: clamp(82px, 19vw, 120px);
-      margin-left: calc(clamp(62px, 15vw, 94px) / -2);
-      margin-top: calc(clamp(82px, 19vw, 120px) / -2);
-      border: 1px solid rgba(255,255,255,.70);
-      border-radius: 12px;
-      overflow: hidden;
+      position: absolute; left: 50%; top: 50%;
+      width: clamp(64px, 16vw, 102px); height: clamp(84px, 21vw, 132px);
+      margin-left: calc(clamp(64px, 16vw, 102px) / -2);
+      margin-top: calc(clamp(84px, 21vw, 132px) / -2);
+      border: 1px solid rgba(255,255,255,.72); border-radius: 12px; overflow: hidden;
       background: rgba(255,255,255,.10);
-      box-shadow: 0 0 24px rgba(255,126,182,.50), inset 0 0 12px rgba(255,255,255,.15);
+      box-shadow: 0 0 26px rgba(255,126,182,.54), inset 0 0 12px rgba(255,255,255,.16);
       backface-visibility: visible;
-      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .sphere .tile:hover {
-      box-shadow: 0 0 34px rgba(255,255,255,.75), 0 0 40px rgba(255,126,182,.60);
-    }
-    .sphere .tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      background: rgba(0,0,0,.92);
-      padding: 16px;
-    }
+    .sphere .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 100; background: rgba(0,0,0,.92); padding: 16px; }
     .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 96vw;
-      max-height: 88vh;
-      border-radius: 16px;
-      box-shadow: 0 0 45px rgba(255,126,182,.35);
-    }
-    .lightbox button {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      background: white;
-    }
-    @keyframes girar {
-      from { transform: rotateY(0deg) rotateX(-10deg); }
-      to { transform: rotateY(360deg) rotateX(-10deg); }
-    }
-    footer {
-      text-align: center;
-      padding: 22px 14px 36px;
-      color: #ffd7e8;
-      line-height: 1.5;
-    }
+    .lightbox img { max-width: 96vw; max-height: 88vh; border-radius: 16px; box-shadow: 0 0 45px rgba(255,126,182,.35); }
+    .lightbox button { position: absolute; top: 18px; right: 18px; background: white; }
+    @keyframes girar { from { transform: rotateX(-10deg) rotateY(0deg); } to { transform: rotateX(-10deg) rotateY(360deg); } }
+    footer { text-align: center; padding: 22px 14px 36px; color: #ffd7e8; line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -175,30 +83,23 @@
       <p class="subtitle">Existem fotos melhores, mas essas são sobre momentos, e não sobre beleza, pois você é perfeita em todos os momentos, minha pituchinha.</p>
     </div>
   </section>
-
   <div class="controls">
     <button id="galeriaBtn">Galeria</button>
     <button id="esferaBtn">Esfera 3D</button>
     <button id="musicaBtn">Tocar música</button>
-    <div class="note">Esfera interativa: arraste com o dedo. Toque numa foto para dar zoom. Música: envie <b>musica.mp3</b>.</div>
+    <div class="note">Arraste a esfera com o dedo. Toque numa foto para ampliar. Música: envie <b>musica.mp3</b>.</div>
   </div>
-
   <audio id="musica" src="musica.mp3" loop></audio>
   <main class="galeria" id="galeria"></main>
   <section class="sphere-wrap"><div class="sphere" id="sphere"></div></section>
-
-  <div class="lightbox" id="lightbox">
-    <button id="fecharZoom">Fechar</button>
-    <img id="zoomImg" src="" alt="Foto ampliada">
-  </div>
-
+  <div class="lightbox" id="lightbox"><button id="fecharZoom">Fechar</button><img id="zoomImg" src="" alt="Foto ampliada"></div>
   <footer>Diria que você é o sal da minha farofa, mas não sksk. Você é perfeita demais para ser tão pouco; você é meu ovo de gema dupla 🫪</footer>
 
   <script>
     const fotos = Array.from({ length: 60 }, (_, i) => {
-      const numero = i + 1;
-      return numero === 2 ? 'IMG/img2.png' : `IMG/img${numero}.jpg`;
-    }).filter(foto => !['IMG/img22.jpg', 'IMG/img23.jpg', 'IMG/img24.jpg'].includes(foto));
+      const n = i + 1;
+      return n === 2 ? 'IMG/img2.png' : `IMG/img${n}.jpg`;
+    });
 
     const galeria = document.getElementById('galeria');
     const sphere = document.getElementById('sphere');
@@ -207,105 +108,74 @@
     const lightbox = document.getElementById('lightbox');
     const zoomImg = document.getElementById('zoomImg');
 
-    function abrirZoom(src) {
-      zoomImg.src = src;
-      lightbox.classList.add('open');
-    }
-
+    function abrirZoom(src) { zoomImg.src = src; lightbox.classList.add('open'); }
     document.getElementById('fecharZoom').onclick = () => lightbox.classList.remove('open');
-    lightbox.onclick = (e) => {
-      if (e.target === lightbox) lightbox.classList.remove('open');
-    };
+    lightbox.onclick = e => { if (e.target === lightbox) lightbox.classList.remove('open'); };
+
+    function criarImagem(src, alt) {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      img.loading = 'lazy';
+      img.onerror = () => img.parentElement && img.parentElement.remove();
+      img.onclick = () => abrirZoom(src);
+      return img;
+    }
 
     fotos.forEach((foto, index) => {
       const card = document.createElement('div');
       card.className = 'photo-card';
-      const img = document.createElement('img');
-      img.src = foto;
-      img.alt = `Foto ${index + 1}`;
-      img.loading = 'lazy';
-      img.onclick = () => abrirZoom(foto);
-      card.appendChild(img);
+      card.appendChild(criarImagem(foto, `Foto ${index + 1}`));
       galeria.appendChild(card);
     });
+
+    let rotX = -10, rotY = 0;
+    function aplicarControle() { sphere.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`; }
 
     function montarEsfera() {
       sphere.innerHTML = '';
       const total = fotos.length;
-      const raio = Math.min(window.innerWidth * 0.43, 285);
-
+      const raio = Math.min(window.innerWidth * 0.48, 320);
       fotos.forEach((foto, index) => {
         const tile = document.createElement('div');
         tile.className = 'tile';
-        const img = document.createElement('img');
-        img.src = foto;
-        img.alt = `Foto ${index + 1}`;
-        tile.appendChild(img);
-        tile.onclick = () => abrirZoom(foto);
-
-        const phi = Math.acos(-1 + (2 * index) / total);
+        tile.appendChild(criarImagem(foto, `Foto ${index + 1}`));
+        const phi = Math.acos(-1 + (2 * (index + .5)) / total);
         const theta = Math.sqrt(total * Math.PI) * phi;
         const x = raio * Math.cos(theta) * Math.sin(phi);
         const y = raio * Math.sin(theta) * Math.sin(phi);
         const z = raio * Math.cos(phi);
-
         tile.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${theta}rad)`;
         sphere.appendChild(tile);
       });
     }
-
     montarEsfera();
     window.addEventListener('resize', montarEsfera);
 
     document.getElementById('galeriaBtn').onclick = () => document.body.classList.remove('sphere-mode');
     document.getElementById('esferaBtn').onclick = () => document.body.classList.add('sphere-mode');
 
-    let arrastando = false;
-    let startX = 0;
-    let startY = 0;
-    let rotX = -10;
-    let rotY = 0;
-
-    function aplicarRotacao() {
-      sphere.classList.add('paused');
-      sphere.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-    }
-
-    sphere.addEventListener('pointerdown', (e) => {
-      arrastando = true;
-      startX = e.clientX;
-      startY = e.clientY;
+    let dragging = false, sx = 0, sy = 0, moved = false;
+    sphere.addEventListener('pointerdown', e => {
+      dragging = true; moved = false; sx = e.clientX; sy = e.clientY;
+      sphere.classList.add('controlando');
       sphere.setPointerCapture(e.pointerId);
-      sphere.classList.add('paused');
     });
-
-    sphere.addEventListener('pointermove', (e) => {
-      if (!arrastando) return;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-      startX = e.clientX;
-      startY = e.clientY;
-      rotY += dx * 0.6;
-      rotX -= dy * 0.4;
-      aplicarRotacao();
+    sphere.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      sx = e.clientX; sy = e.clientY;
+      rotY += dx * .55; rotX -= dy * .35;
+      aplicarControle();
     });
-
-    sphere.addEventListener('pointerup', () => {
-      arrastando = false;
-    });
+    sphere.addEventListener('pointerup', () => { dragging = false; });
 
     musicaBtn.onclick = async () => {
       try {
-        if (musica.paused) {
-          await musica.play();
-          musicaBtn.textContent = 'Pausar música';
-        } else {
-          musica.pause();
-          musicaBtn.textContent = 'Tocar música';
-        }
-      } catch (e) {
-        alert('Envie um arquivo chamado musica.mp3 para o repositório.');
-      }
+        if (musica.paused) { await musica.play(); musicaBtn.textContent = 'Pausar música'; }
+        else { musica.pause(); musicaBtn.textContent = 'Tocar música'; }
+      } catch(e) { alert('Envie um arquivo chamado musica.mp3 para o repositório.'); }
     };
   </script>
 </body>
