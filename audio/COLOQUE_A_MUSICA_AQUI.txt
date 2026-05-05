@@ -1,6 +1,0 @@
-Coloque a música nesta pasta com o nome: musica.mp3
-
-Caminho final esperado pelo site:
-audio/musica.mp3
-
-Depois de enviar, clique em Commit changes.
